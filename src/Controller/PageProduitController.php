@@ -21,7 +21,7 @@ class PageProduitController extends AbstractController {
     public function pageproduit($id, EntityManagerInterface $em) {
         $produit = $em->getRepository(Produits::class)->find($id);
         //getRepository(users::class) est l'equivalent de select * from users
-        return $this->render("pageproduit/pageproduit.html.twig", array('produit' => $produit));
+        return $this->render("pageproduit/css.html.twig", array('produit' => $produit));
     }
 
 }

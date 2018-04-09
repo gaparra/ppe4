@@ -10,14 +10,16 @@
         {%endif%}#}<div class="nomprod"> {{ produit.nom }}</div>
     {# ------------------ {{random (5,0}}  -> un nombre random de 0 a 5 -------------------- #}
     <div class="container" style="margin-left: 0px;">
-        <div class="row" style="text-align: center">
+        <div style="text-align: center">
             <div class='col-sm-3 offset-1'>
-                <div class="produits mb-4 box-shadow" style="height: 390px; width:340px;  background : linear-gradient({% block colorandom %}{% endblock %}, {% block colorandom2 %}{% endblock %})">
+                <div class="produits mb-4 box-shadow" style="height: 230px; width:740px; margin-top:150px;  background : linear-gradient({% block colorandom %}{% endblock %}, {% block colorandom2 %}{% endblock %})">
                     <img src="../{{ produit.photo }}" alt="Image manquante" width="340px" style="float:left; height:230px; border-radius: {% block taillerandom %}{% endblock %}">
                     <div class="card-body">
-                        <p class="card-text">{{ produit.text2 }}</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
+                        <span style='position: absolute; margin-top: -230px; margin-left:110px; font-size: 25px; '>{{ produit.nom }}</span>
+                        <span style='position: absolute; margin-top: -180px; '>{{ produit.text2 }}</span>
+                        {#                        <p class="card-text">{{ produit.text2 }}</p>#}
+                        <div class="d-flex justify-content-between align-items-center" style="position: absolute; margin-top: -70px; margin-left: 81%;">
+                            <div class="btn-group" >
                                 {% if is_granted('IS_AUTHENTICATED_FULLY')%}
                                     {% if produit.stock > 0 %}
                                         <a class="btn btn-sm btn-outline-secondary" href="/ajoutpanier/{{produit.id}}" style="color:black;">Acheter</a>
@@ -29,7 +31,7 @@
                                 {%endif %}
                             </div>
                             {% set test="" %}
-                            <small class="text-muted"><span style="color: black;">{{ produit.prix }} €</span></small>
+                            <small class="text-muted"><span style="color: black; "> &nbsp;&nbsp;<strong>{{ produit.prix }} €</strong></span></small>
                         </div>
                     </div>
                 </div>

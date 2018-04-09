@@ -24,7 +24,7 @@
 
                     {% if first ==1 %}
                         <div class="col-xs-9 numcommande">
-                            <div class="col-xs-3" style="margin-left: 1%;"> Numéro de commande : {{commandes[0].num_commande }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Date d'achat : 03/04/2018 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{valid}} </div>
+                            <div class="col-xs-3" style="margin-left: 1%;"> <strong>Numéro de commande : {{commandes[0].num_commande }}</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Date d'achat : {{ produit.date|date('m-d-Y')|e }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{valid}} &nbsp;&nbsp;&nbsp;&nbsp; <a style='color:#8B4513;' href="/pdf2/{{produit.num_commande|e}}">Télécharger le pdf</a> </div>
                             {% set first=0 %}
                             {% set margetop = -35 %}
                         {%endif%}   
@@ -42,7 +42,7 @@
                             {% set total = 0%}
                         </div> {# ferme le div d'en dessous car si if passe il s'ouvre pas #}
                         <div class="col-xs-9 numcommande" >
-                            <div class="col-xs-3" style="margin-left: 1%;"> Numéro de commande : {{produit.num_commande|e }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Date d'achat : 03/04/2018 {{ produit.date|e }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{valid}} </div>
+                            <div class="col-xs-3" style="margin-left: 1%;"><strong> Numéro de commande : {{produit.num_commande|e }}</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Date d'achat : {{ produit.date|date('m-d-Y')|e }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{valid}}&nbsp;&nbsp;&nbsp;&nbsp; <a style='color:#8B4513;' href="/pdf2/{{produit.num_commande|e}}">Télécharger le pdf</a> </div>
                             <div class="col-xs-3 blockprodcommande" >
                                 <a href="/pageproduit/{{produit.id_produit.getId()|e}}"><img src="{{ produit.id_produit.getPhoto()|e }}" class="imgcommande"/></a>
                                 <span  class='nomprodcom'>  <a style='color:#8B4513;' href="/pageproduit/{{produit.id_produit.getId()|e}}">{{ produit.id_produit.getNom()|e }}</a></span>
