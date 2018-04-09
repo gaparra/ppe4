@@ -1,0 +1,45 @@
+{# empty Twig template #}
+{%  extends "boutique/boutique.html.twig" %}
+
+{% block colorandom %}
+    {% set test="" %}
+    {% for couleur in 0..5 %}
+        {% if random(2,1) == 1%}
+            {% set test=test~random(9,0)%}
+        {%else%}
+            {% set test=test~random('ABCDEF')%}
+        {%endif%} 
+    {%endfor%}                  
+    {% set test='#'~test%}
+    {{test |replace({' ':''})}}
+{% endblock colorandom %}
+
+{% block colorandom2 %}
+    {% set test="" %}
+    {% for couleur in 0..5 %}
+        {% if random(2,1) == 1%}
+            {% set test=test~random(9,0)%}
+        {%else%}
+            {% set test=test~random('ABCDEF')%}
+        {%endif%} 
+    {%endfor%}                  
+    {% set test='#'~test%}
+    {{test |replace({' ':''})}}
+{% endblock colorandom2 %}
+
+{% block taillerandom %}
+    {% set test="" %}
+    {% set vir=0 %}
+    {% for couleur in 0..1 %}
+        {% if vir == 0%}
+            {% set test=test~random(5,0)~"."%}
+            {% set vir=1 %}
+        {%else%}
+            {% set test=test~random(99,0)%}
+        {%endif%} 
+    {%endfor%}                  
+    {% set test=test~"rem;"%}
+    {{test |replace({' ':''})}}
+{% endblock taillerandom %}
+
+

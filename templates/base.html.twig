@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <meta charset="UTF-8">
+        <title>{% block title %}Stylo 3000{% endblock %}</title>
+        <link rel="stylesheet" href="{{asset("build/css/app.css")}}"/>
+        {#    <img src="../public/image/kratostete.png" alt=""/>#}
+
+    {% block stylesheets %}{% endblock %}
+
+</head>
+<body>
+    <div class="container-fluid">
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href={{path("home")}}><span style='color:turquoise'>Stylo</span> <span style='color:red'>3</span><span style='color:darkblue'>000</span></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav mr-auto">
+                    {% if is_granted('IS_AUTHENTICATED_FULLY')%}
+                        {% if (app.user.role=="ROLE_ADMIN") %}<li>
+                                <a class="nav-link float-left" href="/admin">Admin</a>
+                            </li>
+                        {%endif%}
+                    {%endif%}
+
+                    <li>
+                        <a class="nav-link float-left" href="/boutique">Boutique</a>
+                    </li>
+                    {#   <li class="nav-item">
+                          <button id="secret">Start</button>
+                      </li>#}
+                </ul> 
+                {% if not is_granted('IS_AUTHENTICATED_FULLY')%}
+                    <a class="nav-link float-right" href="{{path("login")}}">Se connecter</a>
+                    <a class="nav-link float-right" href="{{path("ajouter")}}">S'inscrire</a>
+                {%else%}
+                    <button class="dropdown-toggle bouton_user" data-toggle="dropdown" style="">{{app.user.username}}</button>
+                    <ul class="dropdown-menu" style="margin-left: 89%;">
+                        <li><a class="nav-link float-left" href="{{path("panier")}}">Panier</a></li>
+                        <li><a class="nav-link float-left" href="{{path("commande")}}">Commandes</a></li>
+                        <li><a class="nav-link float-left" href="{{path("logout")}}">Se déconnecter</a></li>
+                    </ul>
+                {%endif%}
+            </div>
+        </nav>  
+
+    {% block body %}{% endblock %}
+</div>
+<script src="{{ asset("build/js/app.js") }}"></script>
+{% block javascripts %}{% endblock %}
+</body>
+</html>
+
+
+{#admin = 123456#}

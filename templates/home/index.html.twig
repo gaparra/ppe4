@@ -1,0 +1,33 @@
+{# empty Twig template #}
+{%  extends "base.html.twig" %}
+
+{% block body %}
+    <div class='container'>
+    <h1 style='text-align: center'> <span style='color:turquoise'>Stylo</span> <span style='color:red'>3</span><span style='color:darkblue'>000</span></h1>
+    <h1> Bienvenue sur le site Stylo 3000 qui vous permettra d'acheter toutes sortes de stylos pour que vous puissiez
+        écrire.</h1>
+    </div>
+
+
+
+{%endblock body%}
+
+
+{#{% block bouton %}
+    {% if not is_granted('IS_AUTHENTICATED_FULLY')%}
+        <a class="nav-link float-right" href="{{path("login")}}">Se connecter</a>
+        <a class="nav-link float-right" href="{{path("ajouter")}}">S'inscrire</a>
+    {%else%}
+        <button class="dropdown-toggle " data-toggle="dropdown" style="">{{app.user.username}}</button>
+        <ul class="dropdown-menu" style="margin-left: 92%;">
+            <li><a class="nav-link float-right" href="{{path("logout")}}">Se déconnecter</a></li>
+        </ul>
+    {%endif%}
+{% endblock bouton %}#}
+
+
+{#{% if is_granted('IS_AUTHENTICATED_FULLY')%}
+   <p>Username: {{app.user.username}}</p>
+{%else%}
+   <p>Vous n'êtes pas authentifié.</p>
+{%endif%}#}

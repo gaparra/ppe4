@@ -1,0 +1,51 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    {#    {% if error %}
+            <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}#}
+    <div class="container" style="background-color: rgba(255,255,255,0.5); border-radius:0.5rem;">
+        {% if  vide %}
+            <div class='col-xs-12' style='background-color: rgba(255, 87, 51, 0.3); border-radius: 0.5rem; margin-right: -15px; margin-left: -15px;'>
+                <p style='text-align: center;'> Le panier est vide
+            </div>
+        {%else%}
+            <div class='col-xs-12'>
+                <table style="width:100%">
+                    <tr>
+                        <th>Produit</th>
+                        <th>Nom</th>
+                        <th>Quantité</th>
+                        <th>Prix</th>
+                        <th style="width: 150px;">    </th>
+                    </tr>       
+                    {% set total =0 %}
+                    {% for produit in panier %}
+                        <tr>
+                            <td><a class="btn btn-sm btn-outline-secondary" href="/pageproduit/{{produit.nom_produit.getId()|e}}"><img src="{{ produit.nom_produit.getPhoto()|e }}" width="50px" alt=""/></a></td>
+                            <td><a href="/pageproduit/{{produit.nom_produit.getId()|e}}" style="color:black;">{{ produit.nom_produit.getNom()|e }}</a></td>
+                            <td>{{ produit.quantite|e }}</td>
+                            <td>{{ produit.prix|e }}€</td>
+                            <td>
+                                {#<button type="button" class="btn btn-sm btn-outline-secondary" disabled="disabled">+</button>#}
+                                <a type="button" class="btn btn-sm plusmoins" href="/plusun/{{produit.id|e}}">+1</a>
+                                <a type="button" class="btn btn-sm plusmoins"  href="/moinsun/{{produit.id|e}}">-1</a>
+                                <a href="/delete/{{produit.id|e}}" style="font-size: 11px;">Supprimer</a>
+                            </td>
+                        </tr>
+                        {% set total = total + produit.prix|e %}
+                    {%endfor%}
+                </table> 
+                <div class="row" style="margin-top: 20px;">
+                    <div class="col-xs-3" style="margin-left: 75%;"></div>
+                    <div class="col-xs-3" style="background-color: rgba(20,20,200,0.2); border-radius: 0.2rem; margin-bottom: 10px;">
+                        Total : {{total}}€
+                    </div></div>
+                    {#                        -------FAIT PLANTER L'ORDI--------#}
+                <a type="button" class="btn btn-sm btn-outline-secondary" style="margin-left: 815px;" href="/valid">Valider commande</a>
+
+            </div>
+        {%endif%}
+    </div>
+
+{% endblock body %}

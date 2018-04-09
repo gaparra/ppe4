@@ -1,0 +1,61 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    {#    {% if error %}
+            <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}#}
+    <div class="container" >
+        {% if  vide %}
+            <div class='col-xs-12' style='background-color: rgba(255, 87, 51, 0.3); border-radius: 0.5rem; margin-right: -15px; margin-left: -15px;'>
+                <p style='text-align: center;'> Vous n'avez effectué aucune commande
+            </div>
+        {%else%}
+            <div class='col-xs-12'>
+                {% set numcom=commandes[0].num_commande %}
+                {% set first=1 %}
+                {% set margetop = -75 %}
+                {% set total=0 %}
+                {% for produit in commandes %}
+                    {%if produit.est_valid == 1 %}
+                        {% set valid="Commande validée" %}
+                    {%else%}
+                        {% set valid="Commande en attende de validation" %}
+                    {%endif %}
+
+                    {% if first ==1 %}
+                        <div class="col-xs-9 numcommande">
+                            <div class="col-xs-3" style="margin-left: 1%;"> Numéro de commande : {{commandes[0].num_commande }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Date d'achat : 03/04/2018 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{valid}} </div>
+                            {% set first=0 %}
+                            {% set margetop = -35 %}
+                        {%endif%}   
+                        {% if numcom == produit.num_commande|e %}
+                            <div class="col-xs-3 blockprodcommande">
+                                <a href="/pageproduit/{{produit.id_produit.getId()|e}}"><img src="{{ produit.id_produit.getPhoto()|e }}" class="imgcommande"/></a>
+                                <span class='nomprodcom'>  <a style='color:#8B4513;' href="/pageproduit/{{produit.id_produit.getId()|e}}">{{ produit.id_produit.getNom()|e }}</a></span>
+                                <span class='descriptprodcom'>Quantité : {{ produit.quantite|e }}&nbsp; |&nbsp; Prix : {{ produit.prix|e }}€ &nbsp;| &nbsp;Prix unitaire : {{ produit.id_produit.getPrix()|e }}€ </span>
+                                {% set numcom=produit.num_commande|e%}
+                            </div>
+                            {% set margetop = margetop -40%}
+                        {%else%}
+                            <span style='position: absolute; margin-top: {{margetop}}px; margin-left: 75%; border:1px solid black'>Total : {{total}}€</span>
+                            {% set margetop = -75%}
+                            {% set total = 0%}
+                        </div> {# ferme le div d'en dessous car si if passe il s'ouvre pas #}
+                        <div class="col-xs-9 numcommande" >
+                            <div class="col-xs-3" style="margin-left: 1%;"> Numéro de commande : {{produit.num_commande|e }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Date d'achat : 03/04/2018 {{ produit.date|e }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{valid}} </div>
+                            <div class="col-xs-3 blockprodcommande" >
+                                <a href="/pageproduit/{{produit.id_produit.getId()|e}}"><img src="{{ produit.id_produit.getPhoto()|e }}" class="imgcommande"/></a>
+                                <span  class='nomprodcom'>  <a style='color:#8B4513;' href="/pageproduit/{{produit.id_produit.getId()|e}}">{{ produit.id_produit.getNom()|e }}</a></span>
+                                <span class='descriptprodcom'>Quantité : {{ produit.quantite|e }}&nbsp; |&nbsp; Prix : {{ produit.prix|e }}€ &nbsp;| &nbsp;Prix unitaire : {{ produit.id_produit.getPrix()|e }}€ </span>
+                                {% set numcom=produit.num_commande|e%}
+                            </div>
+                        {%endif%}
+                        {% set total = total+produit.prix|e%}
+                    {%endfor%}
+                    <span style='position: absolute; margin-top: {{margetop}}px; margin-left: 75%; border:1px solid black'>Total : {{total}}€</span>
+                </div>
+            </div>
+        {%endif%}
+    </div>
+
+{% endblock body %}
