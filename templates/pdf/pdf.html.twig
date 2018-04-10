@@ -14,23 +14,23 @@
                 {%endif %}
 
                 {% if first ==1 %}
-                    <div class="col-xs-9 numcommande">
+                    <div>
                         <div class="col-xs-3" style="margin-left: 1%; margin-bottom: 20px;"> <strong>Numéro de commande : {{commandes[0].num_commande }}</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Date d'achat : {{ produit.date|date('m-d-Y')|e }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{valid}} </div>
                         {% set first=0 %}
                     {%endif%}   
                     {% if numcom == produit.num_commande|e %}
-                        <div class="col-xs-3 blockprodcommande" style="margin-bottom: 90px">
-                            <span style="position: absolute; margin-bottom:50px;" ><a style='color:#8B4513;' href="/pageproduit/{{produit.id_produit.getId()|e}}">{{ produit.id_produit.getNom()|e }}</a></span>
+                        <div class="col-xs-3 blockprodcommande" style="margin-bottom: 130px; ">
+                            <span style="position: absolute; margin-bottom:50px; font-size:20px;" >{{ produit.id_produit.getNom()|e }}</span>
                             <br>
-                            <span style="position: absolute;"> <a href="/pageproduit/{{produit.id_produit.getId()|e}}"><img src="{{ produit.id_produit.getPhoto()|e }}" style=" width:80px; height:80px;"/></a></span>
-                            <span class='descriptprodcom' style="position: absolute; margin-left: 90px;">Quantité : {{ produit.quantite|e }}&nbsp; |&nbsp; Prix : {{ produit.prix|e }}€ &nbsp;| &nbsp;Prix unitaire : {{ produit.id_produit.getPrix()|e }}€ </span>
-                            {% set numcom=produit.num_commande|e%}
+                            <span style="position: absolute; margin-top: 20px;"> <a href="/pageproduit/{{produit.id_produit.getId()|e}}"><img src="{{ produit.id_produit.getPhoto()|e }}" style=" width:100px; height:100px;"/></a></span>
+                            <span class='descriptprodcom' style="position: absolute; margin-left: 110px; margin-top:35px;">Quantité : {{ produit.quantite|e }}<br> Prix : {{ produit.prix|e }}€ <br>Prix unitaire : {{ produit.id_produit.getPrix()|e }}€ </span>
+                                {% set numcom=produit.num_commande|e%}
                         </div>
 
                     {%endif%}
                     {% set total = total+produit.prix|e%}
                 {%endfor%}
-                <span>Total : {{total}}€</span>
+                <span style="position: absolute; margin-top:30px; font-size: 20px; margin-left: 600px;">Total : {{total}}€</span>
             </div>
         </div>
         {#        {%endif%}#}

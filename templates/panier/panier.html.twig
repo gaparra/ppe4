@@ -36,13 +36,14 @@
                         {% set total = total + produit.prix|e %}
                     {%endfor%}
                 </table> 
-                <div class="row" style="margin-top: 20px;">
+                <div class="row" style="margin-top: 20px; margin-bottom: -15px;">
                     <div class="col-xs-3" style="margin-left: 75%;"></div>
                     <div class="col-xs-3" style="background-color: rgba(20,20,200,0.2); border-radius: 0.2rem; margin-bottom: 10px;">
-                        Total : {{total}}€
-                    </div></div>
-                    {#                        -------FAIT PLANTER L'ORDI--------#}
-                <a type="button" class="btn btn-sm btn-outline-secondary" style="margin-left: 815px;" href="/valid">Valider commande</a>
+                        Total : {{total}}€ 
+                    </div>
+                </div>
+                <a type="button" class="btn btn-sm plusmoins" style="margin-left: 950px; margin-top: -45px;" href="/valid">Valider commande</a>
+                {#                        -------FAIT PLANTER L'ORDI--------#}
 
             </div>
         {%endif%}

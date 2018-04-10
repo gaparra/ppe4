@@ -21,15 +21,19 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav mr-auto">
                     {% if is_granted('IS_AUTHENTICATED_FULLY')%}
-                        {% if (app.user.role=="ROLE_ADMIN") %}<li>
+                        {% if (app.user.role=="ROLE_ADMIN") %}
+                            <li>
                                 <a class="nav-link float-left" href="/admin">Admin</a>
                             </li>
+                        {%else%}
+                            <li>
+                                <a class="nav-link float-left" href="/boutique">Boutique</a>
+                            </li>
                         {%endif%}
+
                     {%endif%}
 
-                    <li>
-                        <a class="nav-link float-left" href="/boutique">Boutique</a>
-                    </li>
+
                     {#   <li class="nav-item">
                           <button id="secret">Start</button>
                       </li>#}
@@ -40,9 +44,13 @@
                 {%else%}
                     <button class="dropdown-toggle bouton_user" data-toggle="dropdown" style="">{{app.user.username}}</button>
                     <ul class="dropdown-menu" style="margin-left: 89%;">
-                        <li><a class="nav-link float-left" href="{{path("panier")}}">Panier</a></li>
-                        <li><a class="nav-link float-left" href="{{path("commande")}}">Commandes</a></li>
-                        <li><a class="nav-link float-left" href="{{path("logout")}}">Se déconnecter</a></li>
+                        {% if (app.user.role!="ROLE_ADMIN") %}
+                            <li><a class="nav-link float-left" href="{{path("panier")}}">Panier</a></li>
+                            <li><a class="nav-link float-left" href="{{path("commande")}}">Commandes</a></li>
+                            <li><a class="nav-link float-left" href="{{path("logout")}}">Se déconnecter</a></li>
+                            {%else%}
+                            <li><a class="nav-link float-left" href="{{path("logout")}}">Se déconnecter</a></li>
+                            {%endif%}
                     </ul>
                 {%endif%}
             </div>

@@ -15,8 +15,7 @@
             {% for i in range(0, 9) %}
                 <input type="button" value="{{ i }}" style="border-radius: 1rem;" class="btnchifr"/>
             {% endfor %}
-                    <input type="button" value="Effacer" style="border-radius: 1rem;" class="reini"/>
-
+            <input type="button" value="Effacer" style="border-radius: 1rem;" class="reini"/>
         </div>
         <br>
         <button type="submit" class="btn btn-success">Se connecter</button>
@@ -30,8 +29,8 @@
                 $("#password").val($("#password").val() + $(this).val());
         {#alert("oups");#}
                 });
-            $(".reini").on("mouseup", function (e) {
-                $("#password").val($("").val());
+                $(".reini").on("mouseup", function (e) {
+                    $("#password").val($("").val());
                 });
             });
     </script>{% endblock %}
