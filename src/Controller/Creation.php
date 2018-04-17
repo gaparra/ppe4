@@ -32,22 +32,24 @@ class Creation extends \Symfony\Bundle\FrameworkBundle\Controller\AbstractContro
                 ->add('Enregistrer', \Symfony\Component\Form\Extension\Core\Type\SubmitType::class, array("label" => "S'inscrire", "attr" => array("class" => "btn btn-success")))
                 ->getForm();
         $form->handleRequest($request);
-        
+        $nom = $unUser->getUserName();
+        $user = $em->getRepository(User::class)->findByUserName(['user_name' => $nom]);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $unUser->setIsActive(1);
-            $unUser->setRole("ROLE_USER");
-
-            $em->persist($unUser);
-            $em->flush();
-
-            $random = rand(0, 9);
-            for ($i = 0; $i < 5; $i++) {
-                $random = $random.rand(0, 9);
+        if ($user == null) {
+            if ($form->isSubmitted() && $form->isValid()) {
+                $unUser->setIsActive(1);
+                $unUser->setRole("ROLE_USER");
+                $em->persist($unUser);
+                $em->flush();
+//            $random = rand(0, 9);
+//            for ($i = 0; $i < 5; $i++) {
+//                $random = $random.rand(0, 9);
+//            }
+//            return $this->render("home/index.html.twig", array('mdp' => $random));
+                return $this->redirectToRoute("home");
             }
-            return $this->render("home/index.html.twig", array('mdp' => $random));
-
-//            return $this->redirectToRoute("home");
+        } else {
+            
         }
         return $this->render("home/modifier.html.twig", array('form' => $form->createView()));
     }
