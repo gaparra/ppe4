@@ -2,12 +2,22 @@
 {%  extends "base.html.twig" %}
 
 {% block body %}
+    <style>
+        span.mdpcache:hover {background-color: white!important; color: black!important; content:"test"!important;}
+        span.mdpcache{background-color: #DC143C; color:#DC143C;}
+    </style>
     <div class='container'>
-    <h1 style='text-align: center'> <span style='color:turquoise'>Stylo</span> <span style='color:red'>3</span><span style='color:darkblue'>000</span></h1>
-    <h1 style="color: white;"> Bienvenue sur le site Stylo 3000 qui vous permettra d'acheter toutes sortes de stylos pour que vous puissiez
-        écrire.</h1>
+        <h1 style='text-align: center'> <span style='color:turquoise'>Stylo</span> <span style='color:red'>3</span><span style='color:darkblue'>000</span></h1>
+        <h1 style="color: white;"> Bienvenue sur le site Stylo 3000 qui vous permettra d'acheter toutes sortes de stylos pour que vous puissiez
+            écrire.</h1>
+        {%if crea%}
+        <div class="col-xs-3" style="background-color: rgba(255, 87, 51, 0.5); border-radius: 0.5rem;"> 
+            Voici votre mot de passe : <span class="mdpcache"><strong>{{mdp}}</strong></span> 
+            <p>Une fois cette page quittée ce message disparaitra.</p>  
+{#            <img src="image/croix-rouge.png" style="position: absolute;margin-left: 80%;margin-top: -75px;" width="30px" alt=""/>#}
+        </div>
+        {%endif%}
     </div>
-
 
 
 {%endblock body%}

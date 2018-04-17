@@ -26,7 +26,11 @@
                                 <div class="btn-group">
                                     {% if is_granted('IS_AUTHENTICATED_FULLY')%}
                                         {% if toto.stock|e > 0 %}
-                                            <a class="btn btn-sm btn-outline-secondary" href="/ajoutpanier/{{toto.id|e}}" style="color:black;">Acheter</a>
+                                            {% if (app.user.role=="ROLE_ADMIN") %}
+                                                <button class="btn btn-sm btn-outline-secondary" disabled="disabled" style="color:black;">Achat impossible avec ce compte</button>
+                                            {%else%}
+                                                <a class="btn btn-sm btn-outline-secondary" href="/ajoutpanier/{{toto.id|e}}" style="color:black;">Acheter</a>
+                                            {%endif%}
                                         {%else%}
                                             <button type="button" class="btn btn-sm btn-outline-secondary" disabled="disabled">Rupture de stock</button>
                                         {%endif %}

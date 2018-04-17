@@ -21,7 +21,8 @@ class HomeController extends AbstractController {
     public function indexController() {
         //return new Response("Exemple d'exploitation de la sécurité");
         // ou on crée "rend" une vue twig
-        return $this->render('home/index.html.twig');
+        $crea = "";
+        return $this->render('home/index.html.twig', array("crea" => $crea));
     }
 
     /**
