@@ -14,6 +14,7 @@ easy_admin:
             - { entity: 'User', icon: 'users'}
             - { entity: 'Produits', icon: 'users'}
             - { entity: 'Commande', icon: 'users'}
+            - { entity: 'Categorie', icon: 'users'}
             
             - label: 'Liens éditeur'
             - {label: Symfony,url: "https://symfony.com/", target: "_blank", icon: "thumbs-o-up"}
@@ -52,6 +53,7 @@ easy_admin:
                     - {property: 'nom', type: 'text'}
                     - {property: 'prix', type: 'integer'}
                     - {property: 'stock', type: 'integer'}
+                    - {property: 'nom_categorie', type: 'Categorie'}
             form:
                 title: "Ajout d'un produit"
                 
@@ -61,6 +63,7 @@ easy_admin:
                     - {property: 'nom', type: 'text'}
                     - {property: 'prix', type: 'integer'}
                     - {property: 'stock', type: 'integer'}
+                    - {property: 'nom_categorie', type: 'class::Categorie'}
         Commande:
             class: App\Entity\Commande
             list:
@@ -71,9 +74,22 @@ easy_admin:
                     - {property: 'est_valid', type: 'integer'}
 
             form:
-                title: "Ajout d'un utilisateur"
+                title: "Validation d'une commande"
                 
                 fields :
                     - {property: 'num_commande', type: 'text'}
                     - {property: 'date', type: 'date'}
                     - {property: 'est_valid', type: 'checkbox'}
+                    
+        Categorie:
+            class: App\Entity\Categorie
+            list:
+                title: "Liste des Catégories"
+                fields:
+                    - {property: 'nom', type: 'text'}
+
+            form:
+                title: "Ajout d'un produit"
+                
+                fields :
+                    - {property: 'nom', type: 'text'}

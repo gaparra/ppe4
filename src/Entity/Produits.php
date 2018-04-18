@@ -56,8 +56,26 @@ class Produits {
      */
     private $text2;
 
+    /**
+     * @var Categorie
+     *
+     * @ORM\ManyToOne(targetEntity="Categorie")
+     * @ORM\JoinColumns({
+     * @ORM\JoinColumn (name="nom_categorie", referencedColumnName="nom")
+     * })
+     */
+    private $nom_categorie;
+
     function __construct() {
         
+    }
+
+    function getNomCategorie() {
+        return $this->nom_categorie;
+    }
+
+    function setNomCategorie(Categorie $nom_categorie) {
+        $this->nom_categorie = $nom_categorie;
     }
 
     function getStock() {
