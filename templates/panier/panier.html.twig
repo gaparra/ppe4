@@ -16,6 +16,7 @@
                         <th>Produit</th>
                         <th>Nom</th>
                         <th>Quantité</th>
+                        <th>Prix unitaire</th>
                         <th>Prix</th>
                         <th style="width: 150px;">    </th>
                     </tr>       
@@ -25,11 +26,12 @@
                             <td><a class="btn btn-sm btn-outline-secondary" href="/pageproduit/{{produit.nom_produit.getId()|e}}"><img src="{{ produit.nom_produit.getPhoto()|e }}" width="50px" alt=""/></a></td>
                             <td><a href="/pageproduit/{{produit.nom_produit.getId()|e}}" style="color:black;">{{ produit.nom_produit.getNom()|e }}</a></td>
                             <td>{{ produit.quantite|e }}</td>
+                            <td>{{ produit.nom_produit.getPrix()|e }}€</td>
                             <td>{{ produit.prix|e }}€</td>
                             <td>
                                 {#<button type="button" class="btn btn-sm btn-outline-secondary" disabled="disabled">+</button>#}
-                                <a type="button" class="btn btn-sm plusmoins" href="/plusun/{{produit.id|e}}">+1</a>
-                                <a type="button" class="btn btn-sm plusmoins"  href="/moinsun/{{produit.id|e}}">-1</a>
+                                <a type="button" class="btn btn-sm plusmoins" href="/plusun/{{produit.id|e}}">+</a>
+                                <a type="button" class="btn btn-sm plusmoins"  href="/moinsun/{{produit.id|e}}">-</a>
                                 <a href="/delete/{{produit.id|e}}" style="font-size: 11px;">Supprimer</a>
                             </td>
                         </tr>
