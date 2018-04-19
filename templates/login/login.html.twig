@@ -33,7 +33,7 @@
                 //tab.splice(1,1,12) => remplace l'element d'index 1 par 12 tab.splice(1,1) supprime l'element d'index 1
             </script>
             <br>
-            <input type="button" value="Effacer" style="border-radius: 1rem; margin-top: 6px;" class="reini"/>
+            <input type="button" value="Effacer" style="border-radius: 1rem; margin-top: 6px;" class="reini codesecr"/>
         </div>
         <br>
         <button type="submit" class="btn btn-success">Se connecter</button>
@@ -42,19 +42,34 @@
 {% endblock body %}
 
 {% block javascripts %}
+    <style id="teste"></style>
     <script type="text/javascript">
         $(document).ready(function (e) {
             $(".btnchifr").on("mouseup", function (e) {
                 $("#password").val($("#password").val() + $(this).val());
-        {#alert("oups");#}
-                });
-                $(".reini").on("mouseup", function (e) {
+                var lecode = document.getElementById("password").value;
+        {%for code in codes%} 
+               if (lecode == {{code.code|e}}) {
+                        document.getElementById("teste").innerHTML = "{{code.style|e}}";
+                }
+        {%endfor %}  
+                    });
+                    $(".reini").on("mouseup", function (e) {
+                        var lecode = document.getElementById("password").value;
+        {#boucle code secret#}
+        {%for code in codes%} 
+                    if (lecode == {{code.code|e}}) {
+                        document.getElementById("teste").innerHTML = "";
+                        document.location.href = "{{code.lien|e}}";
+                    }
+        {%endfor %}  
+        {#fin boucle code secret#}  
                     $("#password").val($("").val());
                 });
             });
-    </script>{% endblock %}
+    </script>
+{% endblock %}
+{#$(".chiffre").on("click", function () {
+ $("#nb").val($("#nb").val() + $(this).val());
+});#}
 
-
-    {#$(".chiffre").on("click", function () {
-     $("#nb").val($("#nb").val() + $(this).val());
- });#}

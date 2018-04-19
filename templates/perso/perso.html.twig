@@ -1,7 +1,39 @@
-{# empty Twig template #}
-{% extends "base.html.twig" %}
+<!DOCTYPE html>
+<html>
+    <head>
 
-{% block body %}
-    Perso .......
+        <meta charset="UTF-8">
+        <title>{% block title %}Stylo 3000{% endblock %}</title>
+        <link rel="stylesheet" href="{{asset("build/css/app.css")}}"/>
+        {#    <img src="../public/image/kratostete.png" alt=""/>#}
 
-{% endblock body %}
+    {% block stylesheets %}{% endblock %}
+
+</head>
+<style>
+    .bodyk{
+        background-image: url(image/GodofWar_E317.jpg);
+        background-size: 100%;
+        background-attachment: fixed;
+    }
+    .titre{
+        float: right;
+        margin-right: 40px;
+        margin-top: 80px;
+    }
+    .titre:hover{
+        float: right;
+        margin-right: 40px;
+        margin-top: 80px;
+    }
+</style>
+<body class="bodyk">
+    <div class="container-fluid">
+        <img class="titre" src="image/gowtitre.png" alt=""/>
+
+    </div>
+    <script src="{{ asset("build/js/app.js") }}"></script>
+
+</body>
+</html>
+
