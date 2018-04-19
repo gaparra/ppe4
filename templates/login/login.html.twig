@@ -4,22 +4,41 @@
     {% if error %}
         <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
+    {#    <div class="container">#}
+    <form action="{{path('login') }}" method="post" class="formlogin">
+        <label for="username" style="font-size: 24px">Identifiant:</label><br>
+        <input type="text" id="username" name="_username" value="{{ last_username }}"/><br>
 
-    <form action="{{path('login') }}" method="post">
-        <label for="username">Identifiant:</label>
-        <input type="text" id="username" name="_username" value="{{ last_username }}"/>
-
-        <label for="password">Mot de passe:</label>
-        <input type="password" id="password" name="_password" readonly/>
+        <label for="password" style="font-size: 24px">Mot de passe:</label><br>
+        <input type="password" id="password" name="_password" readonly/><br>
+        <br>
         <div>
-            {% for i in range(0, 9) %}
-                <input type="button" value="{{ i }}" style="border-radius: 1rem;" class="btnchifr"/>
-            {% endfor %}
-            <input type="button" value="Effacer" style="border-radius: 1rem;" class="reini"/>
+            <script type="text/javascript">
+                function getRandomInt(max) {
+                    return Math.floor(Math.random() * Math.floor(max));
+                }
+                var tab = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+                var randmax = 10;
+                var saut = 0;
+                for (var i = 0; i <= 9; i++) {
+                    var rand = getRandomInt(randmax);
+                    document.write('<input type="button" value="' + tab[rand] + '" class="btnchifr"/>');
+                    if (saut === 4) {
+                        document.write("<br>");
+                    }
+                    saut = saut + 1;
+                    tab.splice(rand, 1);
+                    randmax = randmax - 1;
+                }
+                //tab.splice(1,1,12) => remplace l'element d'index 1 par 12 tab.splice(1,1) supprime l'element d'index 1
+            </script>
+            <br>
+            <input type="button" value="Effacer" style="border-radius: 1rem; margin-top: 6px;" class="reini"/>
         </div>
         <br>
         <button type="submit" class="btn btn-success">Se connecter</button>
     </form>
+    {#    </div>#}
 {% endblock body %}
 
 {% block javascripts %}

@@ -37,7 +37,7 @@
                             </div>
                             {% set margetop = margetop -40%}
                         {%else%}
-                            <span style='position: absolute; margin-top: {{margetop}}px; margin-left: 75%; border:1px solid black'>Total : {{total}}€</span>
+                            <span class="totalcommande" style="margin-top: {{margetop}}px;">Total : {{total}}€</span>
                             {% set margetop = -75%}
                             {% set total = 0%}
                         </div> {# ferme le div d'en dessous car si if passe il s'ouvre pas #}
@@ -52,7 +52,7 @@
                         {%endif%}
                         {% set total = total+produit.prix|e%}
                     {%endfor%}
-                    <span style='position: absolute; margin-top: {{margetop}}px; margin-left: 75%; border:1px solid black'>Total : {{total}}€</span>
+                    <span style='margin-top: {{margetop}}px;' class="totalcommande">Total : {{total}}€</span>
                 </div>
             </div>
         {%endif%}

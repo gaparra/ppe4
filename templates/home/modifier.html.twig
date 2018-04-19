@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <div class='container' style="margin-top: -200px; position: absolute; ">
+    <div class='container' style="margin-top: -200px; position: absolute; margin-left:10%">
         <span style='background-color: rgba(255, 87, 51, 0.5);border-radius:0.2rem '>Votre mot de passe est généré automatiquement et vous sera révélé sur la prochaine page après avoir cliqué sur le bouton S'inscrire.</span>
     </div>
-    {{ form_start(form, {'attr': {'id': 'formFun'}})}}
+    {{ form_start(form, {'attr': {'id': 'formFun', 'class': 'formlogin'}})}}
     {{ form_widget(form)}}
     {{ form_end(form)}}
 {% endblock %}

@@ -28,8 +28,8 @@ easy_admin:
             list:
                 title: "Liste des utilisateurs"
                 fields:
-                    - {property: 'user_name', type: 'text'}
-                    - {property: 'password'}
+                    - {property: 'user_name', type: 'text', label: "Nom d'utilisateur"}
+                    - {property: 'password', label: "Mot de passe"}
                     - {property: 'is_active', type: 'toogle'}
                     - {property: 'email', type: 'email'}
                     - {property: 'role'}
@@ -49,21 +49,23 @@ easy_admin:
                 title: "Liste des Produits"
                 fields:
                     - {property: 'photo', type: 'text'}
-                    - {property: 'text2', type: 'text'}
+                    - {property: 'text2', type: 'text', label: 'Description'}
                     - {property: 'nom', type: 'text'}
                     - {property: 'prix', type: 'integer'}
                     - {property: 'stock', type: 'integer'}
-                    - {property: 'nom_categorie', type: 'Categorie'}
+                    - {property: 'nom_categorie' }
             form:
                 title: "Ajout d'un produit"
                 
                 fields :
                     - {property: 'photo', type: 'text'}
-                    - {property: 'text2', type: 'text'}
+                    - {property: 'text2', type: 'text', label: 'description'}
                     - {property: 'nom', type: 'text'}
                     - {property: 'prix', type: 'integer'}
                     - {property: 'stock', type: 'integer'}
-                    - {property: 'nom_categorie', type: 'class::Categorie'}
+                    - {property: 'nom_categorie', type: 'choice', type_options:
+                            {choices: {'Correcteur':'Correcteur', 'Encre rechargeable':'Encre rechargeable'}}}
+
         Commande:
             class: App\Entity\Commande
             list:

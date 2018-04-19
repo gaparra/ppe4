@@ -101,3 +101,30 @@ form{
     font-size: 20px;
     margin-left: 7px;
 }
+.formlogin{
+    background-color: rgba(153, 107, 97, 0.8);
+    padding-top: 25px;
+    padding-bottom: 25px;
+    border-radius: 0.2rem;
+    border: solid #a29537;
+}
+.btnchifr{
+    border-radius: 1rem; 
+    margin-right:6px; 
+    margin-top:6px;
+    font-size: 20px;
+}
+
+.btnchifr:hover{
+    border-radius: 0.8rem;
+    background-color: #c97676;
+    margin-right: 6px;
+    margin-top: 6px;
+    font-size: 20px;
+    border: solid black 2px;
+}
+.totalcommande{
+    float: right; 
+    margin-right: 30px; 
+    border:1px solid black;
+}
