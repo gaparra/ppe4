@@ -13,11 +13,14 @@ use Doctrine\ORM\Mapping as ORM;
 class Categorie {
 
     /**
-     * @var string
      * @ORM\Id
      * @ORM\Column(name="nom", type="string", length=255, nullable=false)
      */
     private $nom;
+    
+      public function __toString(){
+        return $this->nom;
+}
 
     function __construct() {
         

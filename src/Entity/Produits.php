@@ -64,18 +64,22 @@ class Produits {
      * @ORM\JoinColumn (name="nom_categorie", referencedColumnName="nom")
      * })
      */
-    private $nom_categorie;
+    private $nomCategorie;
+    
+    public function __toString(){
+        return $this->nomCategorie;
+}
 
     function __construct() {
         
     }
 
     function getNomCategorie() {
-        return $this->nom_categorie;
+        return $this->nomCategorie;
     }
 
     function setNomCategorie(Categorie $nom_categorie) {
-        $this->nom_categorie = $nom_categorie;
+        $this->nomCategorie = $nom_categorie;
     }
 
     function getStock() {

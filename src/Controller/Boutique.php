@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller;   // -> comme un require_once
 
-use App\Entity\Produits;   // -> comme un require_once
-use App\Entity\Panier;   // -> comme un require_once
+use App\Entity\Categorie;
+use App\Entity\Panier;
+use App\Entity\Produits;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,13 +19,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class Boutique extends AbstractController {
 
     /**
-     * @Route("/boutique",name="boutique")
+     * @Route("/boutique/{categ}",defaults={"categ"=null},name="boutique")
      */
-    public function apiTotoMethodeClassique(EntityManagerInterface $em) {
-        $unToto = $em->getRepository(Produits::class)->findAll();
+    public function apiTotoMethodeClassique($categ, EntityManagerInterface $em) {
+        if ($categ) {
+            $unToto = $em->getRepository(Produits::class)->findByNomCategorie($categ);
+        } else {
+            $unToto = $em->getRepository(Produits::class)->findAll();
+        }
+        $lesCategs = $em->getRepository(Categorie::class)->findAll();
         //getRepository(users::class) est l'equivalent de select * from users
 
-        return $this->render("boutique/css.html.twig", array('untoto' => $unToto));
+        return $this->render("boutique/css.html.twig", array('untoto' => $unToto, 'lescategs' => $lesCategs));
         //$unToto[0] -> pour recup juste le premier objet
         //$unToto -> pour recup le tableau de tout les toto et dans le twig faut faire un for
     }
@@ -68,8 +74,17 @@ class Boutique extends AbstractController {
             return $this->redirectToRoute("boutique");
         }
     }
-    
 
     //$unToto[0] -> pour recup juste le premier objet
     //$unToto -> pour recup le tableau de tout les toto et dans le twig faut faire un for
+
+    /**
+     * @Route("/filtrecateg/{categ}",name="filtrecateg")
+     */
+    public function filtrecateg($categ, EntityManagerInterface $em) {
+        $produits = $em->getRepository(Produits::class)->findByNomCategorie($categ);
+
+        return $this->render("boutique/css.html.twig", array('produits' => $produits));
+    }
+
 }

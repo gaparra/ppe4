@@ -63,8 +63,7 @@ easy_admin:
                     - {property: 'nom', type: 'text'}
                     - {property: 'prix', type: 'integer'}
                     - {property: 'stock', type: 'integer'}
-                    - {property: 'nom_categorie', type: 'choice', type_options:
-                            {choices: {'Correcteur':'Correcteur', 'Encre rechargeable':'Encre rechargeable'}}}
+                    - {property: 'nom_categorie', type: 'easyadmin_autocomplete',type_options :{class: 'App\Entity\Categorie'}}
 
         Commande:
             class: App\Entity\Commande
@@ -91,7 +90,7 @@ easy_admin:
                     - {property: 'nom', type: 'text'}
 
             form:
-                title: "Ajout d'un produit"
+                title: "Ajout d'une categorie"
                 
                 fields :
                     - {property: 'nom', type: 'text'}

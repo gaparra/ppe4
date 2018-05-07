@@ -23,13 +23,6 @@ class Test {
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=255, nullable=false)
-     */
-    private $lien;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="style", type="string", length=1024, nullable=false)
      */
     private $style;
@@ -42,16 +35,8 @@ class Test {
         return $this->code;
     }
 
-    function getLien() {
-        return $this->lien;
-    }
-
     function setCode($code) {
         $this->code = $code;
-    }
-
-    function setLien($lien) {
-        $this->lien = $lien;
     }
 
     function getStyle() {

@@ -48,22 +48,17 @@
             $(".btnchifr").on("mouseup", function (e) {
                 $("#password").val($("#password").val() + $(this).val());
                 var lecode = document.getElementById("password").value;
+        {#boucle code secret#}
         {%for code in codes%} 
                if (lecode == {{code.code|e}}) {
                         document.getElementById("teste").innerHTML = "{{code.style|e}}";
+                }else{
+                    document.getElementById("teste").innerHTML = "";
                 }
         {%endfor %}  
+          {#fin boucle code secret#}  
                     });
                     $(".reini").on("mouseup", function (e) {
-                        var lecode = document.getElementById("password").value;
-        {#boucle code secret#}
-        {%for code in codes%} 
-                    if (lecode == {{code.code|e}}) {
-                        document.getElementById("teste").innerHTML = "";
-                        document.location.href = "{{code.lien|e}}";
-                    }
-        {%endfor %}  
-        {#fin boucle code secret#}  
                     $("#password").val($("").val());
                 });
             });
@@ -72,4 +67,5 @@
 {#$(".chiffre").on("click", function () {
  $("#nb").val($("#nb").val() + $(this).val());
 });#}
-
+{#http://127.0.0.1:554/perso
+https://godofwar.playstation.com/#}

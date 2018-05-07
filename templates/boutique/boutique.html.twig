@@ -11,6 +11,11 @@
     {# ------------------ {{random (5,0}}  -> un nombre random de 0 a 5 -------------------- #}
     <div class="container" style="margin-left: 0px;">
         {% set foo = 3 %}
+{#        <span style="background-color:red; padding-top:-20px">Filtrer par </span>#}
+        <a class="btn btn-sm btn-outline-secondary categs" href="/boutique">Tous</a>
+        {% for unecateg in lescategs %}
+            <a class="btn btn-sm btn-outline-secondary categs" href="/boutique/{{unecateg.nom|e}}">{{unecateg.nom|e}}</a>
+        {%endfor%}
         {% for toto in untoto %}
             {% if foo==3%}        
                 <div class="row" style="text-align: center">
@@ -19,7 +24,7 @@
                 <div class='col-sm-3 offset-1'>
                     <div class="produits mb-4 box-shadow" style="height: 390px; width:340px;  background : linear-gradient({% block colorandom %}{% endblock %}, {% block colorandom2 %}{% endblock %})">
                         <div class="nomprod"> {{ toto.nom|e }}</div>
-                        <img src="{{ toto.photo|e }}" alt="Image manquante" width="340px" style="height:230px; border-radius: {% block taillerandom %}{% endblock %}">
+                        <img src="../{{ toto.photo|e }}" alt="Image manquante" width="340px" style="height:230px; border-radius: {% block taillerandom %}{% endblock %}">
                         <div class="card-body">
                             <p class="card-text">{{ toto.text2|e }}</p>
                             <div class="d-flex justify-content-between align-items-center">
