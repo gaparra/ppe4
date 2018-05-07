@@ -39,10 +39,11 @@
                     <a class="nav-link float-right" href="{{path("login")}}">Se connecter</a>
                     <a class="nav-link float-right" href="{{path("ajouter")}}">S'inscrire</a>
                 {%else%}
+        <a class="nav-link float-left" href="{{path("panier")}}">Panier</a>
+
                     <button class="dropdown-toggle bouton_user" data-toggle="dropdown" style="">{{app.user.username}}</button>
                     <ul class="dropdown-menu" style="margin-left: 89%;">
                         {% if (app.user.role!="ROLE_ADMIN") %}
-                            <li><a class="nav-link float-left" href="{{path("panier")}}">Panier</a></li>
                             <li><a class="nav-link float-left" href="{{path("commande")}}">Commandes</a></li>
                             <li><a class="nav-link float-left" href="{{path("logout")}}">Se déconnecter</a></li>
                             {%else%}

@@ -155,7 +155,7 @@ class PanierController extends AbstractController {
             }
         }
         $em->flush();
-        return $this->redirectToRoute("panier");
+        return $this->redirectToRoute("commande");
     }
 
 }
